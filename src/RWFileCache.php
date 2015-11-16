@@ -64,6 +64,14 @@ class RWFileCache
     {
         $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
         
+        if (!file_exists($filePath)) {
+            return false;
+        }
+        
+        if (!is_readable($filePath)) {
+            return false;
+        }
+        
         $cacheFileData = file_get_contents($filePath);
         
         if ($this->config['gzipCompression']) {
@@ -93,5 +101,12 @@ class RWFileCache
             return false;
         
         }
+    }
+    
+    public function delete($key)
+    {
+        $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
+        
+        return unlink($filePath);
     }
 }
