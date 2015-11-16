@@ -55,7 +55,43 @@ class RWFileCache
         
         $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
         
-        file_put_contents($filePath, $cacheFileData);
+        $result = file_put_contents($filePath, $cacheFileData);
         
+        return ($result ? true : false);
+    }
+    
+    public function get($key)
+    {
+        $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
+        
+        $cacheFileData = file_get_contents($filePath);
+        
+        if ($this->config['gzipCompression']) {
+            $cacheFileData = gzuncompress($cacheFileData);
+        }
+        
+        $cacheObj = json_decode($cacheFileData);
+        
+        $unixLoad = sys_getloadavg();
+        
+        if ($cacheObj->expiryTimestamp > time() || $unixLoad[0] >= $this->config['unixLoadUpperThreshold']) {
+            
+            // Cache item has not yet expired or system load is too high
+            
+            $content = $cacheObj->content;
+            
+            if ($unserializedContent = @unserialize($content)) {
+                $content = $unserializedContent;
+            }
+            
+            return $content;
+            
+        } else {
+        
+            // Cache item has expired
+            
+            return false;
+        
+        }
     }
 }
