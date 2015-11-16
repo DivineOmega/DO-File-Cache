@@ -10,8 +10,9 @@ $var = $cache1->get('test');
 
 var_dump($var);
 
-$cache1->delete('test');
+$cache1->flush();
 
 $var = $cache1->get('test');
 
 var_dump($var);
+

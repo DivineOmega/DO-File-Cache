@@ -109,4 +109,25 @@ class RWFileCache
         
         return unlink($filePath);
     }
+    
+    public function flush()
+    {
+        $globPattern = $this->config['cacheDirectory'].'*.'.$this->config['fileExtension'];
+        
+        $filePaths = glob($globPattern);
+        
+        if (!is_array($filePaths)) {
+            return false;
+        }
+        
+        foreach ($filePaths as $filePath) {
+            $result = unlink($filePath);
+            if (!$result) {
+                return false;
+            }
+        }
+        
+        return true;
+        
+    }
 }
