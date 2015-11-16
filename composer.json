@@ -1,5 +1,5 @@
 {
-    "name": "rapidwebltd/RWFileCache",
+    "name": "rapidwebltd/rw-file-cache",
     "type": "library",
     "description": "PHP File-based Caching Library",
     "keywords": ["google", "php", "contacts"],

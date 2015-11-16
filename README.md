@@ -1,4 +1,4 @@
-# RWFileCache
+# RW File Cache
 
 RWFileCache is a PHP File-based Caching Library.
 
@@ -11,7 +11,7 @@ You can easily install with composer. Just add the following to your `composer.j
 ```json
 {
   "require": {
-       "rapidwebltd/RWFileCache": "dev-master"
+       "rapidwebltd/rw-file-cache": "dev-master"
    }
 }
 ```
