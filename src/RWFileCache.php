@@ -8,10 +8,10 @@ class RWFileCache
                             "unixLoadUpperThreshold" => 4.0,
                             "gzipCompression" => true,
                             "cacheDirectory" => "/tmp/rwFileCacheStorage/",
-                            "garbageCollection" => [
+                            /*"garbageCollection" => [
                                 "chanceToRun" => 0.05,
                                 "maxAgeSeconds" => 2678400
-                            ],
+                            ],*/
                             "fileExtension" => "cache"
                         ];
                         
