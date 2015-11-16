@@ -20,6 +20,17 @@ class RWFileCache
         
     }
     
+    public function changeConfig($configArray)
+    {
+        if (!is_array($configArray)) {
+            return false;
+        }
+        
+        $this->config = array_merge($this->config, $configArray);
+        
+        return true;
+    }
+    
     public function set($key, $content, $expiry = 0)
     {
         $cacheObj = new \stdClass();
