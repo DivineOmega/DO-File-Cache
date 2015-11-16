@@ -170,4 +170,15 @@ class RWFileCache
     {
         return $this->increment($key, -$offset);
     }
+    
+    public function replace($key, $content, $expiry = 0)
+    {
+        $content = $this->get($key);
+        
+        if (!$content) {
+            return false;
+        }
+        
+        return $this->set($key, $content, $expiry);
+    }
 }
