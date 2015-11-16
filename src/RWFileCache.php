@@ -130,4 +130,44 @@ class RWFileCache
         return true;
         
     }
+    
+    public function increment($key, $offset = 1)
+    {
+        $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
+        
+        if (!file_exists($filePath)) {
+            return false;
+        }
+        
+        if (!is_readable($filePath)) {
+            return false;
+        }
+        
+        $cacheFileData = file_get_contents($filePath);
+        
+        if ($this->config['gzipCompression']) {
+            $cacheFileData = gzuncompress($cacheFileData);
+        }
+        
+        $cacheObj = json_decode($cacheFileData);
+        
+        $content = $cacheObj->content;
+            
+        if ($unserializedContent = @unserialize($content)) {
+            $content = $unserializedContent;
+        }
+        
+        if (!$content || !is_numeric($content)) {
+            return false;
+        }
+        
+        $content += $offset;
+        
+        return $this->set($key, $content, $cacheObj->expiryTimestamp);
+    }
+    
+    public function decrement($key, $offset = 1)
+    {
+        return $this->increment($key, -$offset);
+    }
 }
