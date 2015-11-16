@@ -173,9 +173,7 @@ class RWFileCache
     
     public function replace($key, $content, $expiry = 0)
     {
-        $content = $this->get($key);
-        
-        if (!$content) {
+        if (!$this->get($key)) {
             return false;
         }
         
