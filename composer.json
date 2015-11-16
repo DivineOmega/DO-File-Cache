@@ -2,7 +2,7 @@
     "name": "rapidwebltd/rw-file-cache",
     "type": "library",
     "description": "PHP File-based Caching Library",
-    "keywords": ["google", "php", "contacts"],
+    "keywords": ["cache", "caching", "file cache", "caching library", "library", "php"],
     "homepage": "https://github.com/rapidwebltd/php-google-contacts-v3-api",
     "license": "LGPL3",
     "require": {
