@@ -43,3 +43,38 @@ There are several different configuration variables you can override. The table 
 | `fileExtension` | The file extension that will be appended to all your cache files. | `cache` |
 | `unixLoadUpperThreshold` | If your server's load is greater than this value, cache files will be returned regardless of whether they have expired. This can be used to prevent cache files being regenerated when server load is high. If you do not wish to use this feature, set this option to an obscenely high value. | `4.00` |
 
+### Setting a cache item
+
+Putting something in your file cache is easy. You just need to use the `set` method, as shown below.
+
+```php
+$cache->set('nursery_rhyme',"Mary had a little lamb", strtotime('+ 1 day'));
+```
+
+The first parameter is the cache key, which uniquely references this cache item. 
+
+The second parameter is the cache value - what you wish to store in this cache item. This can be a string, integer, array, object or any type of serializable PHP variable.
+
+The third paramter is the expiry time. It can be specified as a UNIX timestamp or as a number of seconds less than 30 days worth. Cache items will expire and not be retrievable when this time is reached.
+
+### Getting a cache item
+
+To get a cache item you've previously stored, you need to use the `get` method. An example of how to do this is shown below.
+
+```php
+$var = $cache1->get('nursery_rhyme');
+```
+
+The only parameter is the cache key you defined when setting the cache item. You can retrieve any cached variable in this way.
+
+### Other RW File Cache methods
+
+The setting and retrieval of cache items are the most important parts of RW File Cache. In fact, the `set` and `get` methods are probably all you will need.
+
+However, the library provides the following more advanced commands if you need them.
+
+* `$cache->delete($key)` - Delete a specific item from the cache.
+* `$cache->flush()` - Deletes all items from the cache.
+* `$cache->replace($key, $content, $expiry)` - Similar to the `set` method, but will only update a cache item's value if the cache item already exists.
+* `$cache->increment($key, $offset)` - Increment a numeric cache item value by the specified offset (or one if the offset is ommited).
+* `$cache->decrements($key, $offset)` - Decrements a numeric cache item value by the specified offset (or one if the offset is ommited).
