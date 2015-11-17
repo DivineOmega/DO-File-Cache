@@ -77,4 +77,4 @@ However, the library provides the following more advanced commands if you need t
 * `$cache->flush()` - Deletes all items from the cache.
 * `$cache->replace($key, $content, $expiry)` - Similar to the `set` method, but will only update a cache item's value if the cache item already exists.
 * `$cache->increment($key, $offset)` - Increment a numeric cache item value by the specified offset (or one if the offset is ommited).
-* `$cache->decrements($key, $offset)` - Decrements a numeric cache item value by the specified offset (or one if the offset is ommited).
+* `$cache->decrement($key, $offset)` - Decrements a numeric cache item value by the specified offset (or one if the offset is ommited).
