@@ -33,6 +33,8 @@ class RWFileCache
     
     public function set($key, $content, $expiry = 0)
     {
+        $key = basename($key);
+        
         $cacheObj = new \stdClass();
         
         if (!is_string($content)) {
@@ -73,6 +75,8 @@ class RWFileCache
     
     public function get($key)
     {
+        $key = basename($key);
+        
         $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
         
         if (!file_exists($filePath)) {
@@ -116,6 +120,8 @@ class RWFileCache
     
     public function delete($key)
     {
+        $key = basename($key);
+        
         $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
         
         return unlink($filePath);
@@ -144,6 +150,8 @@ class RWFileCache
     
     public function increment($key, $offset = 1)
     {
+        $key = basename($key);
+        
         $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
         
         if (!file_exists($filePath)) {
