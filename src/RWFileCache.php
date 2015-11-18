@@ -33,8 +33,6 @@ class RWFileCache
     
     public function set($key, $content, $expiry = 0)
     {
-        $key = basename($key);
-        
         $cacheObj = new \stdClass();
         
         if (!is_string($content)) {
@@ -66,7 +64,7 @@ class RWFileCache
             $cacheFileData = gzcompress($cacheFileData);
         }
         
-        $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
+        $filePath = $this->getFilePathFromKey($key);
         
         $result = file_put_contents($filePath, $cacheFileData);
         
@@ -75,9 +73,7 @@ class RWFileCache
     
     public function get($key)
     {
-        $key = basename($key);
-        
-        $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
+        $filePath = $this->getFilePathFromKey($key);
         
         if (!file_exists($filePath)) {
             return false;
@@ -120,9 +116,7 @@ class RWFileCache
     
     public function delete($key)
     {
-        $key = basename($key);
-        
-        $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
+        $filePath = $this->getFilePathFromKey($key);
         
         return unlink($filePath);
     }
@@ -150,9 +144,7 @@ class RWFileCache
     
     public function increment($key, $offset = 1)
     {
-        $key = basename($key);
-        
-        $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
+        $filePath = $this->getFilePathFromKey($key);
         
         if (!file_exists($filePath)) {
             return false;
@@ -197,5 +189,14 @@ class RWFileCache
         }
         
         return $this->set($key, $content, $expiry);
+    }
+    
+    private function getFilePathFromKey($key)
+    {
+        $key = basename($key);
+        
+        $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
+        
+        return $filePath;
     }
 }
