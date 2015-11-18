@@ -123,23 +123,38 @@ class RWFileCache
     
     public function flush()
     {
-        $globPattern = $this->config['cacheDirectory'].'*.'.$this->config['fileExtension'];
-        
-        $filePaths = glob($globPattern);
-        
-        if (!is_array($filePaths)) {
-            return false;
-        }
+        return $this->deleteDirectoryTree($this->config['cacheDirectory']);
+    }
+    
+    public function deleteDirectoryTree($directory)
+    {
+        $filePaths = scandir($directory);
         
         foreach ($filePaths as $filePath) {
-            $result = unlink($filePath);
+            
+            if ($filePath=='.' || $filePath=='..') {
+                continue;
+            }
+            
+            $fullFilePath = $directory.'/'.$filePath;
+            
+            if(is_dir($fullFilePath)) {
+                $result = $this->deleteDirectoryTree($fullFilePath);
+                
+                if ($result) {
+                    $result = rmdir($fullFilePath);
+                }
+                
+            } else {
+                $result = unlink($fullFilePath);
+            }
+            
             if (!$result) {
                 return false;
             }
         }
         
         return true;
-        
     }
     
     public function increment($key, $offset = 1)

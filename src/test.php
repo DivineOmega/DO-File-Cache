@@ -17,3 +17,5 @@ $cache1->replace('test',"mary had a little lamb", strtotime('+ 1 day'));
 $var = $cache1->get('test');
 
 var_dump($var);
+
+$cache1->flush();
