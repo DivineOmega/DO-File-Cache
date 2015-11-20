@@ -210,6 +210,28 @@ class RWFileCache
     {
         $key = basename($key);
         
+        $key = str_replace(array('-', '.', '_'), '/', $key);
+        
+        while(strpos($key, '//')!==false) {
+            $key = str_replace('//', '/', $key);
+        }
+        
+        $endOfDirectory = strrpos($key, '/');
+        
+        if ($endOfDirectory !== false) {
+            
+            $directoryToCreate = $this->config['cacheDirectory'].substr($key, 0, $endOfDirectory);
+            
+            if (!file_exists($directoryToCreate)) {
+            
+                $result = mkdir($directoryToCreate, 0777, true);
+                
+                if(!$result) {
+                    return false;
+                }
+            }
+        }
+        
         $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
         
         return $filePath;
