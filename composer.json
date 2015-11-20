@@ -10,7 +10,7 @@
     },
     "autoload": {
         "psr-4": {
-            "rapidweb\\RWFileCache\\": "./src/"
+            "rapidweb\\RWFileCache\\": "src/"
         }
     }
 }
