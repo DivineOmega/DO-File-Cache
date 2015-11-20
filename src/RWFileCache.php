@@ -10,14 +10,14 @@ class RWFileCache
      * @var string[]
      */
     protected $config = [
-        "unixLoadUpperThreshold" => 4.0,
-        "gzipCompression" => true,
-        "cacheDirectory" => "/tmp/rwFileCacheStorage/",
+        'unixLoadUpperThreshold' => 4.0,
+        'gzipCompression'        => true,
+        'cacheDirectory'         => '/tmp/rwFileCacheStorage/',
         /*"garbageCollection" => [
             "chanceToRun" => 0.05,
             "maxAgeSeconds" => 2678400
         ],*/
-        "fileExtension" => "cache"
+        'fileExtension' => 'cache',
     ];
 
     /**
@@ -159,7 +159,7 @@ class RWFileCache
         $filePaths = scandir($directory);
 
         foreach ($filePaths as $filePath) {
-            if ($filePath=='.' || $filePath=='..') {
+            if ($filePath == '.' || $filePath == '..') {
                 continue;
             }
 
@@ -264,9 +264,9 @@ class RWFileCache
     protected function getFilePathFromKey($key)
     {
         $key = basename($key);
-        $badChars = array('-', '.', '_', '\\', '*', '\"', '?', '[', ']', ':', ';', '|', '=', ',');
+        $badChars = ['-', '.', '_', '\\', '*', '\"', '?', '[', ']', ':', ';', '|', '=', ','];
         $key = str_replace($badChars, '/', $key);
-        while (strpos($key, '//')!==false) {
+        while (strpos($key, '//') !== false) {
             $key = str_replace('//', '/', $key);
         }
 
