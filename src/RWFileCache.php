@@ -210,7 +210,9 @@ class RWFileCache
     {
         $key = basename($key);
         
-        $key = str_replace(array('-', '.', '_', '\\'), '/', $key);
+        $badChars = array('-', '.', '_', '\\', '*', '\"', '?', '[', ']', ':', ';', '|', '=', ',');
+        
+        $key = str_replace($badChars, '/', $key);
         
         while(strpos($key, '//')!==false) {
             $key = str_replace('//', '/', $key);
