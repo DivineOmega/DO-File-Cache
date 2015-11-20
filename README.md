@@ -57,6 +57,8 @@ The second parameter is the cache value - what you wish to store in this cache i
 
 The third paramter is the expiry time. It can be specified as a UNIX timestamp or as a number of seconds less than 30 days worth. Cache items will expire and not be retrievable when this time is reached.
 
+Note that if you use dots, dashes, underscores or a few other special characters in your cache key, the created cache files will be put into a directory structure. For example, a cache key of `objects.cars.redCar` will be stored in `objects/cars/redCar.cache`. This is useful if you wish to categorise cache files and to prevent too many cache files building up in a single directory.
+
 ### Getting a cache item
 
 To get a cache item you've previously stored, you need to use the `get` method. An example of how to do this is shown below.
