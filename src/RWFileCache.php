@@ -182,7 +182,7 @@ class RWFileCache
     }
 
     /**
-     * Incremets a value within the cache.
+     * Increments a value within the cache.
      *
      * @param string $key
      * @param int    $offset
@@ -255,7 +255,7 @@ class RWFileCache
     }
 
     /**
-     * Returns the file path from a given cache key.
+     * Returns the file path from a given cache key, creating the relevant directory structure if necessary.
      *
      * @param string $key
      *
