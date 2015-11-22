@@ -154,7 +154,7 @@ class RWFileCache
      *
      * @return bool
      */
-    public function deleteDirectoryTree($directory)
+    private function deleteDirectoryTree($directory)
     {
         $filePaths = scandir($directory);
 
