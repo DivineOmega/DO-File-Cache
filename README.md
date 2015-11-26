@@ -66,7 +66,7 @@ Note that if you use dots, dashes, underscores or a few other special characters
 To get a cache item you've previously stored, you need to use the `get` method. An example of how to do this is shown below.
 
 ```php
-$var = $cache1->get('nursery_rhyme');
+$var = $cache->get('nursery_rhyme');
 ```
 
 The only parameter is the cache key you defined when setting the cache item. You can retrieve any cached variable in this way.
