@@ -134,6 +134,10 @@ class RWFileCache
     {
         $filePath = $this->getFilePathFromKey($key);
 
+        if (!file_exists($filePath)) {
+            return false;
+        }
+
         return unlink($filePath);
     }
 
