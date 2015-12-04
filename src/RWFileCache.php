@@ -77,7 +77,7 @@ class RWFileCache
         $filePath = $this->getFilePathFromKey($key);
         $result = file_put_contents($filePath, $cacheFileData);
 
-        return ($result ? true : false);
+        return $result ? true : false;
     }
 
     /**
