@@ -1,7 +1,5 @@
 # RW File Cache
 
-[![StyleCI](https://styleci.io/repos/46275735/shield)](https://styleci.io/repos/46275735)
-
 RW File Cache is a PHP File-based Caching Library.
 
 Its syntax is designed to closely resemble the PHP `memcache` extension.
