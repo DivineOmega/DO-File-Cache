@@ -6,15 +6,7 @@ Its syntax is designed to closely resemble the PHP `memcache` extension.
 
 ## Installation
 
-You can easily install with composer. Just add the following to your `composer.json` then run `composer install`.
-
-```json
-{
-  "require": {
-       "rapidwebltd/rw-file-cache": "dev-master"
-   }
-}
-```
+You can easily install with composer. Just run `composer require rapidwebltd/rw-file-cache`.
 
 ## Usage
 
