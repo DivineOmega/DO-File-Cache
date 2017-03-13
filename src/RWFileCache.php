@@ -107,6 +107,11 @@ class RWFileCache
 
         $cacheObj = json_decode($cacheFileData);
 
+        // Unable to decode JSON (could happen if compression was turned off while compressed caches still exist)
+        if ($cacheObj===false) {
+            return false;
+        }
+
         $unixLoad = sys_getloadavg();
 
         if ($cacheObj->expiryTimestamp > time() || $unixLoad[0] >= $this->config['unixLoadUpperThreshold']) {
