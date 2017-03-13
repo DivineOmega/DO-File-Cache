@@ -112,8 +112,14 @@ class RWFileCache
         if ($cacheObj->expiryTimestamp > time() || $unixLoad[0] >= $this->config['unixLoadUpperThreshold']) {
             // Cache item has not yet expired or system load is too high
             $content = $cacheObj->content;
-            if ($unserializedContent = @unserialize($content)) {
+
+            if (($unserializedContent = @unserialize($content))!==false) {
+                // Normal unserialization
                 $content = $unserializedContent;
+
+            } elseif ($content==serialize(false)) {
+                // Edge case to handle boolean false being stored
+                $content = false;
             }
 
             return $content;
