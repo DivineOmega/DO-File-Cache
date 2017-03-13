@@ -108,7 +108,7 @@ class RWFileCache
         $cacheObj = json_decode($cacheFileData);
 
         // Unable to decode JSON (could happen if compression was turned off while compressed caches still exist)
-        if ($cacheObj===false) {
+        if ($cacheObj===null) {
             return false;
         }
 
