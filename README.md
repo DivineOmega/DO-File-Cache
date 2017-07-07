@@ -23,7 +23,7 @@ require_once "vendor/autoload.php";
 
 $cache = new \rapidweb\RWFileCache\RWFileCache();
 
-$cache->changeConfig(array("cacheDirectory" => "/tmp/rwFileCacheStorage/"));
+$cache->changeConfig(["cacheDirectory" => "/tmp/rwFileCacheStorage/"]);
 ```
 
 This code creates a new RW File Cache object called `$cache` and then configures it to store its cache files in the `/tmp/rwFileCacheStorage/` directory.
