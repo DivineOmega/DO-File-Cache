@@ -6,7 +6,8 @@
     "homepage": "https://github.com/rapidwebltd/RW-File-Cache",
     "license": "LGPL3",
     "require": {
-        "php": ">=5.2.1"
+        "php": ">=5.2.1",
+        "phpunit/phpunit": "^5.7"
     },
     "autoload": {
         "psr-4": {
