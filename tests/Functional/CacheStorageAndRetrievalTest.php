@@ -11,7 +11,7 @@ final class CacheStorageAndRetrievalTest extends TestCase
     public function setUp()
     {
         $this->cache = new \rapidweb\RWFileCache\RWFileCache();
-        $this->cache->changeConfig(['cacheDirectory' => '/tmp/rwFileCacheTesting/']);
+        $this->cache->changeConfig(['cacheDirectory' => __DIR__.'/Data/']);
     }
 
     public function testBasicString()
