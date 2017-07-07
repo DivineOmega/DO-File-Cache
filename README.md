@@ -1,5 +1,7 @@
 # RW File Cache
 
+[![Build Status](https://travis-ci.org/rapidwebltd/RW-File-Cache.svg?branch=master)](https://travis-ci.org/rapidwebltd/RW-File-Cache)
+
 RW File Cache is a PHP File-based Caching Library.
 
 Its syntax is designed to closely resemble the PHP `memcache` extension.
