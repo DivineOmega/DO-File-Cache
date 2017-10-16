@@ -16,7 +16,7 @@ This section will show you how to use RW File Cache. If you have used `memcache`
 
 ### Setup & Configuration
 
-Before you can do anything with RW File Cache, you must instatiate it and then, if you wish, set some configuration options.
+Before you can do anything with RW File Cache, you must instantiate it and then, if you wish, set some configuration options.
 
 ```php
 require_once "vendor/autoload.php";
@@ -72,5 +72,5 @@ However, the library provides the following more advanced commands if you need t
 * `$cache->delete($key)` - Delete a specific item from the cache.
 * `$cache->flush()` - Deletes all items from the cache.
 * `$cache->replace($key, $content, $expiry)` - Similar to the `set` method, but will only update a cache item's value if the cache item already exists.
-* `$cache->increment($key, $offset)` - Increment a numeric cache item value by the specified offset (or one if the offset is ommited).
-* `$cache->decrement($key, $offset)` - Decrements a numeric cache item value by the specified offset (or one if the offset is ommited).
+* `$cache->increment($key, $offset)` - Increment a numeric cache item value by the specified offset (or one if the offset is omitted).
+* `$cache->decrement($key, $offset)` - Decrements a numeric cache item value by the specified offset (or one if the offset is omitted).
