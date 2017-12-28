@@ -2,6 +2,8 @@
 
 namespace rapidweb\RWFileCache;
 
+use Exception;
+
 class RWFileCache
 {
     /**
@@ -112,7 +114,15 @@ class RWFileCache
             return false;
         }
 
-        $unixLoad = sys_getloadavg();
+        if (!function_exists('sys_getloadavg')) {
+            throw new Exception('Your PHP installation does not support `sys_getloadavg` (Windows?). Please set `unixLoadUpperThreshold` to `-1` in your RWFileCache config.');
+        }
+
+        if ($this->config['unixLoadUpperThreshold']==-1) {
+            $unixLoad = [0 => PHP_INT_MAX, 1 => PHP_INT_MAX, 2 => PHP_INT_MAX];
+        } else {
+            $unixLoad = sys_getloadavg();
+        }
 
         if ($cacheObj->expiryTimestamp > time() || $unixLoad[0] >= $this->config['unixLoadUpperThreshold']) {
             // Cache item has not yet expired or system load is too high
