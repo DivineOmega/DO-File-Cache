@@ -195,6 +195,9 @@ class RWFileCache
                     $result = rmdir($fullFilePath);
                 }
             } else {
+                if (basename($fullFilePath)=='.keep') {
+                    continue;
+                }
                 $result = unlink($fullFilePath);
             }
 
