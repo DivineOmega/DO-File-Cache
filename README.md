@@ -10,6 +10,8 @@ Its syntax is designed to closely resemble the PHP `memcache` extension.
 
 You can easily install with composer. Just run `composer require rapidwebltd/rw-file-cache`.
 
+If you are using Laravel, consider using the [Laravel Cache Driver for RW File Cache](https://github.com/rapidwebltd/RW-File-Cache-Laravel-Cache-Driver) instead.
+
 ## Usage
 
 This section will show you how to use RW File Cache. If you have used `memcache` before, this should be pretty familiar.
