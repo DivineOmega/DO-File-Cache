@@ -72,6 +72,7 @@ class RWFileCache
 
         // Do not save if cache has already expired
         if ($cacheObj->expiryTimestamp < time()) {
+            $this->delete($key);
             return false;
         }
 
