@@ -70,6 +70,11 @@ class RWFileCache
             $cacheObj->expiryTimestamp = time() + $expiry;
         }
 
+        // Do not save if cache has already expired
+        if ($cacheObj->expiryTimestamp < time()) {
+            return false;
+        }
+
         $cacheFileData = json_encode($cacheObj);
 
         if ($this->config['gzipCompression']) {
