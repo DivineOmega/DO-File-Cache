@@ -304,16 +304,18 @@ class RWFileCache
             $key = str_replace('//', '/', $key);
         }
 
+        $directoryToCreate = $this->config['cacheDirectory'];
+
         $endOfDirectory = strrpos($key, '/');
 
         if ($endOfDirectory !== false) {
             $directoryToCreate = $this->config['cacheDirectory'].substr($key, 0, $endOfDirectory);
+        }
 
-            if (!file_exists($directoryToCreate)) {
-                $result = mkdir($directoryToCreate, 0777, true);
-                if (!$result) {
-                    return false;
-                }
+        if (!file_exists($directoryToCreate)) {
+            $result = mkdir($directoryToCreate, 0777, true);
+            if (!$result) {
+                return false;
             }
         }
 
