@@ -319,6 +319,10 @@ class RWFileCache
             }
         }
 
+        if (!is_readable($directoryToCreate) || !is_writable($directoryToCreate)) {
+            chmod($directoryToCreate, 0777);
+        }
+
         $filePath = $this->config['cacheDirectory'].$key.'.'.$this->config['fileExtension'];
 
         return $filePath;
