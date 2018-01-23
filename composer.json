@@ -4,7 +4,7 @@
     "description": "RW File Cache is a PHP File-based Caching Library. Its syntax is designed to closely resemble the PHP memcache extension.",
     "keywords": ["cache", "caching", "file cache", "caching library", "library", "php"],
     "homepage": "https://github.com/rapidwebltd/RW-File-Cache",
-    "license": "LGPL3",
+    "license": "LGPL-3.0-only",
     "require": {
         "php": ">=5.2.1"
     },
