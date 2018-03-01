@@ -2,8 +2,6 @@
 
 use PHPUnit\Framework\TestCase;
 
-use RapidWeb\uxdm\Objects\Sources\CSVSource;
-
 final class CacheStorageAndRetrievalTest extends TestCase
 {
     private $cache = null;
