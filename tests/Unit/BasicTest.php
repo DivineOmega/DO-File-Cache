@@ -147,7 +147,7 @@ final class BasicTests extends TestCase
 
         $this->assertEquals($stored, $this->cache->get($key));
 
-        sleep(2);
+        usleep(3000000);
 
         $this->assertFalse($this->cache->get($key));
     }
