@@ -73,6 +73,7 @@ class RWFileCache
         // Do not save if cache has already expired
         if ($cacheObj->expiryTimestamp < time()) {
             $this->delete($key);
+
             return false;
         }
 
@@ -116,7 +117,7 @@ class RWFileCache
         $cacheObj = json_decode($cacheFileData);
 
         // Unable to decode JSON (could happen if compression was turned off while compressed caches still exist)
-        if ($cacheObj===null) {
+        if ($cacheObj === null) {
             return false;
         }
 
@@ -124,7 +125,7 @@ class RWFileCache
             throw new Exception('Your PHP installation does not support `sys_getloadavg` (Windows?). Please set `unixLoadUpperThreshold` to `-1` in your RWFileCache config.');
         }
 
-        if ($this->config['unixLoadUpperThreshold']==-1) {
+        if ($this->config['unixLoadUpperThreshold'] == -1) {
             $unixLoad = [0 => PHP_INT_MAX, 1 => PHP_INT_MAX, 2 => PHP_INT_MAX];
         } else {
             $unixLoad = sys_getloadavg();
@@ -134,11 +135,10 @@ class RWFileCache
             // Cache item has not yet expired or system load is too high
             $content = $cacheObj->content;
 
-            if (($unserializedContent = @unserialize($content))!==false) {
+            if (($unserializedContent = @unserialize($content)) !== false) {
                 // Normal unserialization
                 $content = $unserializedContent;
-
-            } elseif ($content==serialize(false)) {
+            } elseif ($content == serialize(false)) {
                 // Edge case to handle boolean false being stored
                 $content = false;
             }
@@ -201,7 +201,7 @@ class RWFileCache
                     $result = rmdir($fullFilePath);
                 }
             } else {
-                if (basename($fullFilePath)=='.keep') {
+                if (basename($fullFilePath) == '.keep') {
                     continue;
                 }
                 $result = unlink($fullFilePath);
