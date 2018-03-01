@@ -95,4 +95,16 @@ final class CacheStorageAndRetrievalTest extends TestCase
 
         $this->assertEquals($stored, $retrieved);
     }
+
+    public function testDeepDirectoryCreationWithMultipleSlashes()
+    {
+        $stored = 'Deep directory creation test 2.';
+
+        $key = 'deep//directory/creation////test';
+        $this->cache->set($key, $stored, strtotime('+ 1 day'));
+
+        $retrieved = $this->cache->get($key);
+
+        $this->assertEquals($stored, $retrieved);
+    }
 }

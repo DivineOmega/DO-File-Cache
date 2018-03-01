@@ -11,6 +11,11 @@ final class BasicTests extends TestCase
         $this->cache = new \rapidweb\RWFileCache\RWFileCache();
     }
 
+    public function testSettingInvalidCacheConfig()
+    {
+        $this->assertFalse($this->cache->changeConfig('invalid_data'));
+    }
+
     public function testDelete()
     {
         $stored = 'Mary had a little lamb.';
@@ -111,6 +116,38 @@ final class BasicTests extends TestCase
     {
         $key = __FUNCTION__;
         $this->cache->get($key);
+
+        $this->assertFalse($this->cache->get($key));
+    }
+
+    public function testIncrementNonExistantCache()
+    {
+        $key = __FUNCTION__;
+        $this->assertFalse($this->cache->increment($key));
+    }
+
+    public function testDecrementNonExistantCache()
+    {
+        $key = __FUNCTION__;
+        $this->assertFalse($this->cache->decrement($key));
+    }
+
+    public function testSetExpiryInSeconds()
+    {
+        $key = __FUNCTION__;
+        $this->assertTrue($this->cache->set($key, 'test', 1));
+    }
+
+    public function testExpiryOfOneSecondCache()
+    {
+        $stored = 'expiry_test_value';
+
+        $key = __FUNCTION__;
+        $this->cache->set($key, 'expiry_test_value', 1);
+
+        $this->assertEquals($stored, $this->cache->get($key));
+
+        sleep(1);
 
         $this->assertFalse($this->cache->get($key));
     }
