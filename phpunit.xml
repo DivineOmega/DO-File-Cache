@@ -17,7 +17,12 @@
         </testsuite>
     </testsuites>
     <filter>
-        
+        <whitelist>
+            <directory suffix=".php">src</directory>
+            <exclude>
+                <directory suffix=".php">src/Examples</directory>
+            </exclude>
+        </whitelist>
     </filter>
     <php>
         
