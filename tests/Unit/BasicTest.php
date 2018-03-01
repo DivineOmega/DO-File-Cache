@@ -147,7 +147,7 @@ final class BasicTests extends TestCase
 
         $this->assertEquals($stored, $this->cache->get($key));
 
-        if (getenv('TRAVIS')=='true') {
+        if (getenv('TRAVIS') == 'true') {
             $this->markTestSkipped('Travis CI does not seem to sleep correctly, so cache expiry can not be tested correctly.');
         }
 
@@ -155,5 +155,4 @@ final class BasicTests extends TestCase
 
         $this->assertFalse($this->cache->get($key));
     }
-
 }
