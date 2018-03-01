@@ -138,16 +138,16 @@ final class BasicTests extends TestCase
         $this->assertTrue($this->cache->set($key, 'test', 1));
     }
 
-    public function testExpiryOfOneSecondCache()
+    public function testExpiryOfCache()
     {
         $stored = 'expiry_test_value';
 
         $key = __FUNCTION__;
-        $this->cache->set($key, 'expiry_test_value', 1);
+        $this->cache->set($key, $stored, 2);
 
         $this->assertEquals($stored, $this->cache->get($key));
 
-        sleep(1);
+        sleep(2);
 
         $this->assertFalse($this->cache->get($key));
     }
