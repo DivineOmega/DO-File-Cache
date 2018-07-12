@@ -1,10 +1,10 @@
 <?php
 
-namespace rapidweb\RWFileCache;
+namespace DivineOmega\DOFileCache;
 
 use Exception;
 
-class RWFileCache
+class DOFileCache
 {
     /**
      * Cache configurations.
@@ -12,14 +12,10 @@ class RWFileCache
      * @var string[]
      */
     protected $config = [
-        'unixLoadUpperThreshold' => 4.0,
+        'unixLoadUpperThreshold' => -1,
         'gzipCompression'        => true,
-        'cacheDirectory'         => '/tmp/rwFileCacheStorage/',
-        /*"garbageCollection" => [
-            "chanceToRun" => 0.05,
-            "maxAgeSeconds" => 2678400
-        ],*/
-        'fileExtension' => 'cache',
+        'cacheDirectory'         => '/tmp/do-file-cache-storage/',
+        'fileExtension'          => 'cache',
     ];
 
     /**
@@ -95,6 +91,7 @@ class RWFileCache
      * @param string $key
      *
      * @return mixed
+     * @throws Exception
      */
     public function get($key)
     {
@@ -122,11 +119,11 @@ class RWFileCache
         }
 
         if (!function_exists('sys_getloadavg')) {
-            throw new Exception('Your PHP installation does not support `sys_getloadavg` (Windows?). Please set `unixLoadUpperThreshold` to `-1` in your RWFileCache config.');
+            throw new Exception('Your PHP installation does not support `sys_getloadavg` (Windows?). Please set `unixLoadUpperThreshold` to `-1` in your DOFileCache config.');
         }
 
         if ($this->config['unixLoadUpperThreshold'] == -1) {
-            $unixLoad = [0 => PHP_INT_MAX, 1 => PHP_INT_MAX, 2 => PHP_INT_MAX];
+            $unixLoad = [0 => -PHP_INT_MAX, 1 => -PHP_INT_MAX, 2 => -PHP_INT_MAX];
         } else {
             $unixLoad = sys_getloadavg();
         }
@@ -274,10 +271,11 @@ class RWFileCache
      * Replaces a value within the cache.
      *
      * @param string $key
-     * @param mixed  $content
-     * @param int    $expiry
+     * @param mixed $content
+     * @param int $expiry
      *
      * @return bool
+     * @throws Exception
      */
     public function replace($key, $content, $expiry = 0)
     {

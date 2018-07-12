@@ -8,7 +8,7 @@ final class CacheStorageAndRetrievalTest extends TestCase
 
     public function setUp()
     {
-        $this->cache = new \rapidweb\RWFileCache\RWFileCache();
+        $this->cache = new \DivineOmega\DOFileCache\DOFileCache();
         $this->cache->changeConfig(['cacheDirectory' => __DIR__.'/Data/']);
     }
 
