@@ -13,7 +13,7 @@ Its syntax is designed to closely resemble the PHP `memcache` extension.
 
 You can easily install with composer. Just run `composer require divineomega/do-File-Cache`.
 
-If you are using Laravel, consider using the [Laravel Cache Driver for DO File Cache](https://github.com/DivineOmega/DO-File-Cache-Laravel-Cache-Driver) instead.
+If you need a PSR-6 cache, check out the [PSR-6 Adapter for DO File Cache](https://github.com/DivineOmega/DO-File-Cache-PSR-6).
 
 ## Usage
 
