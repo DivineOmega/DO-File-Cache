@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/DivineOmega/DO-File-Cache.svg?branch=master)](https://travis-ci.org/DivineOmega/DO-File-Cache)
 [![Coverage Status](https://coveralls.io/repos/github/DivineOmega/DO-File-Cache/badge.svg?branch=master)](https://coveralls.io/github/DivineOmega/DO-File-Cache?branch=master)
-[![StyleCI](https://styleci.io/repos/46275735/shield?branch=master)](https://styleci.io/repos/46275735)
+[![StyleCI](https://github.styleci.io/repos/140566511/shield?branch=master)](https://github.styleci.io/repos/140566511)
 ![Packagist](https://img.shields.io/packagist/dt/DivineOmega/DO-File-Cache.svg)
 
 DO File Cache is a PHP File-based Caching Library.
