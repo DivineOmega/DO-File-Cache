@@ -90,8 +90,9 @@ class DOFileCache
      *
      * @param string $key
      *
-     * @return mixed
      * @throws Exception
+     *
+     * @return mixed
      */
     public function get($key)
     {
@@ -271,11 +272,12 @@ class DOFileCache
      * Replaces a value within the cache.
      *
      * @param string $key
-     * @param mixed $content
-     * @param int $expiry
+     * @param mixed  $content
+     * @param int    $expiry
+     *
+     * @throws Exception
      *
      * @return bool
-     * @throws Exception
      */
     public function replace($key, $content, $expiry = 0)
     {
