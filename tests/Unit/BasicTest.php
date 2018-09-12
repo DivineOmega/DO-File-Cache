@@ -1,8 +1,10 @@
 <?php
 
+namespace DivineOmega\DOFileCache\Tests;
+
 use PHPUnit\Framework\TestCase;
 
-final class BasicTests extends TestCase
+final class BasicTest extends TestCase
 {
     private $cache = null;
 
