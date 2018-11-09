@@ -1,5 +1,7 @@
 <?php
 
+namespace DivineOmega\DOFileCache\Tests;
+
 use PHPUnit\Framework\TestCase;
 
 final class CacheStorageAndRetrievalTest extends TestCase
