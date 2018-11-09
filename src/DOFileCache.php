@@ -119,7 +119,7 @@ class DOFileCache
             return false;
         }
 
-        if (!function_exists('sys_getloadavg')) {
+        if (!function_exists('sys_getloadavg') && $this->config['unixLoadUpperThreshold'] !== -1) {
             throw new Exception('Your PHP installation does not support `sys_getloadavg` (Windows?). Please set `unixLoadUpperThreshold` to `-1` in your DOFileCache config.');
         }
 
