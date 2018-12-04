@@ -49,11 +49,7 @@ class DOFileCache
     {
         $cacheObj = new \stdClass();
 
-        if (!is_string($content)) {
-            $content = serialize($content);
-        }
-
-        $cacheObj->content = $content;
+        $cacheObj->content = serialize($content);
 
         if (!$expiry) {
             // If no expiry specified, set to 'Never' expire timestamp (+10 years)
@@ -133,7 +129,7 @@ class DOFileCache
             // Cache item has not yet expired or system load is too high
             $content = $cacheObj->content;
 
-            if (($unserializedContent = @unserialize($content)) !== false) {
+            if (($unserializedContent = unserialize($content)) !== false) {
                 // Normal unserialization
                 $content = $unserializedContent;
             } elseif ($content == serialize(false)) {
