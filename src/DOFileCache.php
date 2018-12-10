@@ -145,7 +145,7 @@ class DOFileCache
     }
 
     /**
-     * Check if the string contains serialized data
+     * Check if the string contains serialized data.
      *
      * @param string $string
      *
@@ -173,7 +173,7 @@ class DOFileCache
             return false;
         }
 
-        return (@unserialize($string) !== false);
+        return @unserialize($string) !== false;
     }
 
     /**
