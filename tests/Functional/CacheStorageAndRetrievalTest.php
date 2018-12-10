@@ -64,7 +64,7 @@ final class CacheStorageAndRetrievalTest extends TestCase
 
     public function testBooleanTrue()
     {
-        $stored = false;
+        $stored = true;
 
         $key = __FUNCTION__;
         $this->cache->set($key, $stored, strtotime('+ 1 day'));
