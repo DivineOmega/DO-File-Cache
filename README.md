@@ -11,7 +11,7 @@ Its syntax is designed to closely resemble the PHP `memcache` extension.
 
 ## Installation
 
-You can easily install with composer. Just run `composer require divineomega/do-File-Cache`.
+You can easily install with composer. Just run `composer require divineomega/do-file-cache`.
 
 If you need a PSR-6 cache, check out the [PSR-6 Adapter for DO File Cache](https://github.com/DivineOmega/DO-File-Cache-PSR-6).
 
