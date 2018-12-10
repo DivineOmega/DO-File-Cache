@@ -115,6 +115,16 @@ class DOFileCache
             return false;
         }
 
+        // Check cache object format
+        if (!isset($cacheObj->content) || !isset($cacheObj->expiryTimestamp)) {
+            return false;
+        }
+
+        // Check cache content is serialized
+        if (!$this->isSerialized($cacheObj->content)) {
+            return false;
+        }
+
         if (!function_exists('sys_getloadavg') && $this->config['unixLoadUpperThreshold'] !== -1) {
             throw new Exception('Your PHP installation does not support `sys_getloadavg` (Windows?). Please set `unixLoadUpperThreshold` to `-1` in your DOFileCache config.');
         }
@@ -127,21 +137,43 @@ class DOFileCache
 
         if ($cacheObj->expiryTimestamp > time() || $unixLoad[0] >= $this->config['unixLoadUpperThreshold']) {
             // Cache item has not yet expired or system load is too high
-            $content = $cacheObj->content;
-
-            if (($unserializedContent = unserialize($content)) !== false) {
-                // Normal unserialization
-                $content = $unserializedContent;
-            } elseif ($content == serialize(false)) {
-                // Edge case to handle boolean false being stored
-                $content = false;
-            }
-
-            return $content;
+            return unserialize($cacheObj->content);
         } else {
             // Cache item has expired
             return false;
         }
+    }
+
+    /**
+     * Check if the string contains serialized data
+     *
+     * @param string $string
+     *
+     * @return bool
+     */
+    public function isSerialized($string)
+    {
+        if (!is_string($string)) {
+            return false;
+        }
+
+        if ($string === 'N;') {
+            return true;
+        }
+
+        if (strlen($string) < 4) {
+            return false;
+        }
+
+        if ($string[1] !== ':') {
+            return false;
+        }
+
+        if (!in_array($string[0], ['s', 'a', 'O', 'b', 'i', 'd'])) {
+            return false;
+        }
+
+        return (@unserialize($string) !== false);
     }
 
     /**
