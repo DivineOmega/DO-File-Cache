@@ -105,12 +105,16 @@ class DOFileCache
         $cacheFileData = file_get_contents($filePath);
 
         if ($this->config['gzipCompression']) {
-            $cacheFileData = gzuncompress($cacheFileData);
+            try {
+                $cacheFileData = gzuncompress($cacheFileData);
+            } catch (\Exception $e) {
+                $cacheFileData = false;
+            }
         }
 
         $cacheObj = json_decode($cacheFileData);
 
-        // Unable to decode JSON (could happen if compression was turned off while compressed caches still exist)
+        // Unable to decode JSON
         if ($cacheObj === null) {
             return false;
         }
