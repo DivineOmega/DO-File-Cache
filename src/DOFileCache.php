@@ -112,6 +112,11 @@ class DOFileCache
             }
         }
 
+        // Bail immediately if the file could not be read, or its data could not be uncompressed
+        if (!$cacheFileData) {
+            return false;
+        }
+
         $cacheObj = json_decode($cacheFileData);
 
         // Unable to decode JSON
