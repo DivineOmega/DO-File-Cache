@@ -8,7 +8,7 @@ final class CacheStorageAndRetrievalTest extends TestCase
 {
     private $cache = null;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->cache = new \DivineOmega\DOFileCache\DOFileCache();
         $this->cache->changeConfig(['cacheDirectory' => __DIR__.'/Data/']);

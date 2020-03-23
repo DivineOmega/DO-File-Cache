@@ -8,7 +8,7 @@ final class BasicTest extends TestCase
 {
     private $cache = null;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->cache = new \DivineOmega\DOFileCache\DOFileCache();
     }
@@ -114,7 +114,7 @@ final class BasicTest extends TestCase
         $this->assertEquals($stored, $this->cache->get($key));
     }
 
-    public function testGetNonexistantCache()
+    public function testGetNonexistentCache()
     {
         $key = __FUNCTION__;
         $this->cache->get($key);
@@ -122,13 +122,13 @@ final class BasicTest extends TestCase
         $this->assertFalse($this->cache->get($key));
     }
 
-    public function testIncrementNonExistantCache()
+    public function testIncrementNonExistentCache()
     {
         $key = __FUNCTION__;
         $this->assertFalse($this->cache->increment($key));
     }
 
-    public function testDecrementNonExistantCache()
+    public function testDecrementNonExistentCache()
     {
         $key = __FUNCTION__;
         $this->assertFalse($this->cache->decrement($key));
